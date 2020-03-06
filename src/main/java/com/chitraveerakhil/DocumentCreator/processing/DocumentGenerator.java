@@ -18,28 +18,20 @@ public class DocumentGenerator {
 		FileOutputStream out = new FileOutputStream(new File(name + ".docx"));
 
 		XWPFParagraph paragraph = document.createParagraph();
-		XWPFRun nameVal = paragraph.createRun();
-		nameVal.setBold(true);
-		nameVal.setText("Name: ");
-		nameVal.setBold(false);
-		nameVal.setText(name);
-
-		XWPFRun mobileVal = paragraph.createRun();
-		mobileVal.setBold(true);
-		mobileVal.setText("\nMobile Number: ");
-		mobileVal.setBold(false);
-		mobileVal.setText(mobileNumber);
-
-		XWPFRun emailVal = paragraph.createRun();
-		emailVal.setBold(true);
-		emailVal.setText("\nEmail Id: ");
-		emailVal.setBold(false);
-		emailVal.setText(emailId);
+		createXwpfRun(paragraph,"Name: ", name);
+		createXwpfRun(paragraph,"\nMobile Number: ", mobileNumber);
+		createXwpfRun(paragraph,"\nEmail Id: ", emailId);
 
 		document.write(out);
-
 		out.close();
-		System.out.println("createdWord" + "_" + name + ".docx" + " written successfully");
+	}
+	
+	void createXwpfRun(XWPFParagraph paragraph, String key, String value){
+		XWPFRun xwpfRun = paragraph.createRun();
+		xwpfRun.setBold(true);
+		xwpfRun.setText(key);
+		xwpfRun.setBold(false);
+		xwpfRun.setText(value);
 	}
 
 }
